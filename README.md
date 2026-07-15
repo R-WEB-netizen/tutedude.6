@@ -1,88 +1,154 @@
 https://colab.research.google.com/github/R-WEB-netizen/tutedude.6/blob/main/forecasting.ipynb
 
-1. Import and explore the dataset (check for trends, seasonality, and missing values).
+# Coffee Sales Forecasting
 
-Short Analysis
+## Project Overview
 
-After running the code, write something like:
+This project analyzes a coffee sales dataset to identify sales trends, seasonality, and forecast future sales using time-series forecasting techniques.
 
-Dataset Size: ____ rows × ____ columns
-Missing Values: No missing values found. (or mention the columns with missing values)
-Trend: Sales show an increasing/decreasing/stable trend over time.
-Seasonality: Higher sales are observed during ______, indicating seasonal patterns. (or "No strong seasonality observed.")
+## Dataset
 
+* **Dataset:** Coffee Sales Dataset
+* **Features:** Date, Money (Sales), Coffee Name, Cash Type, Card
 
-2. Perform data preprocessing:
-Handle missing values
-Convert date columns into appropriate datetime format
-Extract relevant features (month, day, year, etc.)
+## Data Preprocessing
 
+* Checked the dataset for missing values.
+* Converted the **Date** column to the datetime format.
+* Extracted time-based features including **Year**, **Month**, **Day**, **Week**, **Quarter**, and **Is_Weekend**.
+* Sorted the dataset chronologically for time-series analysis.
 
-Short Analysis 
+## Exploratory Data Analysis
 
-Missing Values: Checked using isnull().sum(). Missing numerical values (if any) were replaced with the median, and categorical missing values were replaced with the mode.
-Date Conversion: The Date column was converted to the datetime data type to enable time-series analysis.
-Feature Extraction: New features such as Year, Month, Month Name, Day, Day of Week, Week Number, Quarter, and Is_Weekend were extracted from the Date column. These features help identify seasonal patterns and improve forecasting model performance.
+* Visualized the sales trend over time.
+* Examined monthly average sales to identify seasonal patterns.
+* Checked for missing values using summary statistics and visualizations.
 
+### Findings
 
-3. Split the dataset into training and testing sets.
+* No missing values were found in the dataset.
+* Daily sales showed noticeable fluctuations over time.
+* Monthly average sales showed only minor differences between months, indicating **no strong seasonal pattern** in the available data.
+* The dataset did not exhibit a clear long-term upward or downward sales trend.
 
-Short Analysis 
+## Models Implemented
 
-The dataset was split into 80% training data and 20% testing data while preserving the chronological order of observations. Unlike random splitting, this approach prevents information from the future leaking into the training set, making the evaluation more realistic for time-series forecasting.
+* Linear Regression
+* ARIMA
+* SARIMA
+* Prophet
 
+## Model Evaluation
 
+The models were evaluated using:
 
-4. Apply a suitable forecasting model (e.g., Linear Regression, ARIMA, Prophet, or any other approach discussed in the video).
+* Mean Absolute Error (MAE)
+* Root Mean Squared Error (RMSE)
+* R² Score
 
-Short Analysis 
+### Results
 
-A Linear Regression model was trained using the extracted date features (Year, Month, Day, Week, Quarter, and Is_Weekend) to forecast sales. The trained model was then used to predict sales on the testing dataset. The predicted values can be compared with the actual sales values to evaluate the forecasting performance.
+* The forecasting models produced relatively high prediction errors.
+* The R² scores were negative, indicating that the models performed worse than predicting the average sales value.
+* This suggests that the available features and historical data were insufficient to accurately model the sales behavior.
 
+## Conclusion
 
-
-ARIMA
-
-Short Analysis 
-
-The ARIMA (1,1,1) model was used to forecast future coffee sales. The model was trained on the first 80% of the sales data and tested on the remaining 20%. The forecasted values were compared with the actual sales values to assess the model's forecasting performance.
-
-
-
-Prophet
-
-Short Analysis 
-
-The Prophet forecasting model was applied to the coffee sales dataset after converting the data into the required ds (date) and y (sales) format. The model learned the historical sales pattern and generated forecasts for the next 30 days. Prophet also visualizes the overall trend and any seasonal patterns present in the data, making it suitable for time-series forecasting with minimal preprocessing.
-
-
-Sarima
-
-Short Analysis 
-
-The SARIMA (Seasonal ARIMA) model was applied to forecast coffee sales. The model was trained on the first 80% of the data and tested on the remaining 20%. SARIMA captures both trend and seasonal patterns in the sales data. The forecasted sales were compared with the actual sales to evaluate the model's performance.
+The project demonstrates the complete workflow for time-series forecasting, including data preprocessing, visualization, model development, and evaluation. Although the models did not achieve strong predictive performance, the analysis highlights the importance of feature engineering, longer historical datasets, and model tuning. Future improvements could include incorporating external factors such as holidays, promotions, weather, and customer demand, as well as optimizing forecasting model parameters.
 
 
-5. Evaluate the model performance using relevant metrics such as RMSE, MAE, or R² score.
+### Discussion of Negative R² Scores
 
-   
-Short Analysis
+All forecasting models produced a **negative R² score**, indicating that their predictions were less accurate than simply predicting the average sales value for every observation. This suggests that the models were unable to capture the underlying patterns in the dataset effectively.
 
-The forecasting model was evaluated using MAE, RMSE, and R² score. The model achieved an MAE of 18.42, indicating that the average prediction error was approximately 18 units. The RMSE of 25.67 suggests relatively small prediction errors overall. The R² score of 0.89 shows that the model explains about 89% of the variation in coffee sales, indicating strong forecasting performance.
-   
+Several factors may have contributed to this result:
 
+* The dataset may not contain a strong trend or seasonal pattern, making future sales difficult to predict.
+* The model used only basic date-based features (such as Year, Month, and Day), while important factors influencing coffee sales (e.g., promotions, holidays, weather, customer traffic, or product type) were not included.
+* The sales data contains high day-to-day variability or random fluctuations that simple forecasting models cannot explain.
+* The dataset may be relatively small or cover a limited time period, reducing the model's ability to learn meaningful patterns.
+* Some forecasting models, particularly ARIMA and SARIMA, require careful parameter tuning. Using default parameters (such as ARIMA(1,1,1) or SARIMA(1,1,1)(1,1,1,12)) may not produce the best results for the dataset.
 
-6. Summarize your observations and findings in a brief analysis section.
+To improve forecasting performance, future work could include collecting a larger historical dataset, incorporating additional explanatory variables, identifying the appropriate seasonal period, tuning model parameters using methods such as grid search or AIC/BIC optimization, detecting and handling outliers, and experimenting with more advanced forecasting models such as XGBoost, LightGBM, LSTM, or Prophet with tuned seasonal settings.
 
-Analysis and Findings
-
-The Coffee Sales dataset was successfully imported and explored. Missing values were checked, and any missing entries were handled appropriately to ensure data quality. The **Date** column was converted into the datetime format, and useful features such as **Year, Month, Day, Week, Quarter,** and **Is_Weekend** were extracted for forecasting.
-
-Exploratory analysis showed the overall sales trend over time and helped identify any seasonal patterns present in the dataset. The dataset was then divided into **80% training data** and **20% testing data**, maintaining the chronological order required for time-series forecasting.
-
-A forecasting model (Linear Regression/ARIMA/SARIMA/Prophet) was trained using the historical sales data and used to predict future sales. The model's performance was evaluated using **MAE (Mean Absolute Error)**, **RMSE (Root Mean Squared Error)**, and **R² Score**. Lower MAE and RMSE values indicate more accurate predictions, while a higher R² score indicates that the model explains a larger proportion of the variation in sales.
-
-Overall, the forecasting model was able to capture the main sales patterns and produce reasonable predictions. The results demonstrate that time-series forecasting techniques can be effectively used to estimate future coffee sales and support business planning and decision-making.
+Overall, the negative R² scores indicate that the current models are not suitable for accurately forecasting this dataset without further feature engineering and model optimization.
 
 
+## Model Comparison and Recommendation
+
+Four forecasting models were evaluated: **Linear Regression, ARIMA, SARIMA, and Prophet**. Their performance was compared using **MAE**, **RMSE**, and **R² Score**.
+
+* **Linear Regression:** Simple and fast to train, but it assumes a linear relationship and is not well suited for complex time-series patterns.
+* **ARIMA:** Effective for capturing trends in non-seasonal time-series data but requires careful selection of model parameters.
+* **SARIMA:** Extends ARIMA by modeling seasonal effects, making it more suitable when the data contains recurring seasonal patterns.
+* **Prophet:** Designed for business time-series forecasting and can automatically model trend and seasonality with minimal manual tuning.
+
+The best-performing model should be the one with:
+
+* **Lowest MAE**
+* **Lowest RMSE**
+* **Highest R² Score**
+
+In this project, all models produced relatively poor performance (including negative R² scores), indicating that none of them captured the underlying sales patterns effectively. Therefore, **no single model can be recommended as a highly accurate forecasting solution for this dataset in its current form**.
+
+Among the evaluated models, the recommended model should be the one that achieved the **lowest RMSE and MAE and the highest R² score**, even if its performance was still limited. Future improvements could include additional feature engineering, a longer historical dataset, parameter tuning, and incorporating external variables such as holidays, promotions, weather, or customer demand to improve forecasting accuracy.
+
+
+
+### Statistical Validation of Model Assumptions
+
+Before fitting the ARIMA/SARIMA model, the stationarity assumption was evaluated using the **Augmented Dickey-Fuller (ADF) test**. The ADF test checks whether the time series has a constant mean and variance over time.
+
+* **Null Hypothesis (H₀):** The time series is non-stationary.
+* **Alternative Hypothesis (H₁):** The time series is stationary.
+
+The test results were interpreted using the p-value:
+
+* If **p < 0.05**, the null hypothesis is rejected and the series is considered stationary.
+* If **p ≥ 0.05**, the series is considered non-stationary, and first-order differencing was applied before fitting the ARIMA/SARIMA model.
+
+This validation ensures that the model assumptions are checked before forecasting, improving the reliability of the analysis.
+
+## Feature Selection and Importance
+
+The Linear Regression model was trained using the following features extracted from the **Date** column:
+
+* **Year:** Captures long-term changes in sales over multiple years.
+* **Month:** Helps identify monthly or seasonal variations in sales.
+* **Day:** Represents daily changes that may influence sales.
+* **Week:** Captures weekly patterns in customer purchasing behavior.
+* **Quarter:** Represents broader seasonal business cycles.
+* **Is_Weekend:** Indicates whether a transaction occurred on a weekend, which may affect customer demand.
+
+These features were selected because they are commonly used in time-series forecasting when only historical date information is available. They allow the model to learn temporal patterns without requiring additional external variables.
+
+However, the model does not include other factors that can significantly affect coffee sales, such as:
+
+* Promotions or discounts
+* Holidays and festivals
+* Weather conditions
+* Store location
+* Customer footfall
+* Product category or coffee type
+
+The absence of these variables may reduce the predictive accuracy of the Linear Regression model.
+
+### Feature Importance
+
+For Linear Regression, the importance of each feature can be assessed by examining the model coefficients. Features with larger absolute coefficient values have a greater influence on the predicted sales, while coefficients close to zero indicate a smaller impact.
+
+Overall, the selected features provide a basic representation of time-related patterns, but incorporating additional business-related variables would likely improve forecasting performance.
+
+plt.figure(figsize=(12,5))
+
+plt.plot(residuals)
+
+plt.axhline(0, color='red', linestyle='--')
+
+plt.title("Residuals Over Time")
+plt.xlabel("Observation")
+plt.ylabel("Residual")
+
+plt.grid(True)
+plt.show()****
 
