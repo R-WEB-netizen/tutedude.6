@@ -1,5 +1,16 @@
 https://colab.research.google.com/github/R-WEB-netizen/tutedude.6/blob/main/forecasting.ipynb
 
+ Model Performance Comparison
+
+Among the four forecasting models evaluated, **Linear Regression achieved the best performance with an R² score of 0.16**, indicating that it explained approximately 16% of the variation in coffee sales. Although this level of predictive accuracy is modest, it outperformed all of the time-series models evaluated in this study.
+
+Both **ARIMA** and **Prophet** produced slightly negative R² scores (-0.0077), indicating that they performed marginally worse than a simple mean prediction. This suggests that the sales series did not contain strong temporal patterns such as trend or autocorrelation that these models could effectively exploit.
+
+**SARIMA** performed the worst (R² = -1.048). This indicates that the assumed seasonal structure did not match the characteristics of the dataset, resulting in forecasts that were substantially less accurate than the baseline mean prediction.
+
+Overall, Linear Regression was the most suitable model for this dataset because the available calendar-based features provided more useful predictive information than the historical time-series structure alone. However, the relatively low R² also indicates that additional business variables—such as promotions, holidays, weather, pricing, or customer traffic—would likely be needed to achieve more accurate forecasts.
+
+
 # Coffee Sales Forecasting
 
 ## Project Overview
