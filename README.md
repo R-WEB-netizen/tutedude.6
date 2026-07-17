@@ -1,4 +1,4 @@
-
+https://colab.research.google.com/github/R-WEB-netizen/tutedude.6/blob/main/forecasting.ipynb
 ## Dataset Exploration
 
 The sales dataset was successfully imported and explored. The data types, missing values, and summary statistics were examined. The date column was converted into the appropriate datetime format, enabling time series analysis. Trend and seasonality plots were generated to understand the overall sales pattern over time.
