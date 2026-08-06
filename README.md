@@ -1,34 +1,25 @@
 https://colab.research.google.com/github/R-WEB-netizen/tutedude.6/blob/main/forecasting.ipynb
-## Dataset Exploration
+Dataset Exploration
 
 The sales dataset was successfully imported and explored. The data types, missing values, and summary statistics were examined. The date column was converted into the appropriate datetime format, enabling time series analysis. Trend and seasonality plots were generated to understand the overall sales pattern over time.
 
-## Data Preprocessing
+Data Preprocessing
 
 The dataset was cleaned by handling missing values using appropriate techniques. The date column was converted to datetime format, and additional features such as year, month, day, and day of the week were extracted for feature engineering. These preprocessing steps improved the quality of the data and prepared it for forecasting.
 
-## Model Development
+Model Development
 
 The dataset was divided into training (80%) and testing (20%) sets. Multiple forecasting models, including Linear Regression, ARIMA, SARIMA, and Prophet, were implemented to predict future sales. Each model was trained on the training data and evaluated using the testing data.
 
-## Model Evaluatio
+Model Evaluatio
 
 The forecasting models were evaluated using:
 
-* **RMSE (Root Mean Squared Error):** Measures the average magnitude of prediction errors; lower values indicate better performance.
-* **MAE (Mean Absolute Error):** Represents the average absolute difference between actual and predicted sales; lower values are preferred.
-* **R² Score:** Indicates how well the model explains the variability in sales. Values closer to 1 represent better performance, while negative values suggest the model performs worse than predicting the mean.
+* RMSE (Root Mean Squared Error):** Measures the average magnitude of prediction errors; lower values indicate better performance.
+* MAE (Mean Absolute Error):** Represents the average absolute difference between actual and predicted sales; lower values are preferred.
+* R² Score:** Indicates how well the model explains the variability in sales. Values closer to 1 represent better performance, while negative values suggest the model performs worse than predicting the mean.
 
 The performance of the models varied depending on the characteristics of the dataset. Linear Regression performed well when a linear trend was present, whereas ARIMA, SARIMA, and Prophet were better suited for capturing temporal patterns such as trend and seasonality.
-
-## Key Findings
-
-* The dataset was successfully cleaned and prepared for forecasting.
-* Converting the date column into datetime format enabled effective time-based feature extraction.
-* Sales data showed a trend over time, while seasonality depended on the specific dataset.
-* Time series forecasting models generally performed better when clear temporal patterns were present.
-* RMSE and MAE provided a direct measure of prediction accuracy, whereas R² indicated the overall explanatory power of each model.
-* Residual diagnostics for the SARIMA model helped verify whether the residuals behaved like random noise, indicating an adequate model fit.
 
 
 
@@ -96,21 +87,6 @@ Choose based on whether the series is stationary. If the data has a trend, start
 
 
 
-An ARIMA(1,1,1) model was used to forecast weekly sales. The model was trained on 80% of the historical data and tested on the remaining 20%. Forecast performance was evaluated using MAE, RMSE, and R² score. The comparison between actual and forecasted sales indicates how well the ARIMA model captures the underlying sales pattern.
-
-
-
-✅ Import and explore the dataset
-✅ Check missing values
-✅ Analyze trend, seasonality, cyclic, and irregular components
-✅ Convert Date to datetime
-✅ Extract date features
-✅ Split into training and testing sets
-✅ Apply Linear Regression
-✅ Apply ARIMA
-✅ Apply Prophet
-✅ Evaluate using MAE, RMSE, and R²
-✅ Plot actual vs. predicted results
 
 
 
