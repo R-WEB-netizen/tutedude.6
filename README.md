@@ -1,3 +1,7 @@
+How to run program.
+
+there how i built and what i learn.
+
 https://colab.research.google.com/github/R-WEB-netizen/tutedude.6/blob/main/forecasting.ipynb
 Walmart Sales Forecasting
 
